@@ -1,0 +1,78 @@
+security:
+    providers:
+        in_memory: { memory: ~ }
+        my_provider:
+            entity:
+                class: App\Entity\Usuario
+                property: email
+
+        my_provider_api:
+            entity:
+                class: App\Entity\Usuario
+                property: username
+
+    encoders:
+        Symfony\Component\Security\Core\User\User:
+            algorithm: bcrypt
+            cost: 12
+
+        App\Entity\Usuario:
+            algorithm: bcrypt
+            cost: 12
+
+    role_hierarchy:
+        ROLE_COMPRADOR:     [ROLE_COMPRADOR]
+        ROLE_GESTOR:        [ROLE_COMPRADOR]
+        ROLE_ADMINISTRADOR: [ROLE_GESTOR]
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        login:
+            pattern: ^/api/v1/auth/login
+            stateless: true
+            anonymous: true
+            provider: my_provider_api
+            json_login:
+                check_path: /api/v1/auth/login
+                success_handler: lexik_jwt_authentication.handler.authentication_success
+                failure_handler: lexik_jwt_authentication.handler.authentication_failure
+
+        register:
+            pattern: ^/api/v1/auth/register
+            stateless: true
+            anonymous: true
+
+        api:
+            pattern: ^/api/v1
+            anonymous: false
+            stateless: true
+            provider: my_provider_api
+            guard:
+                authenticators:
+                    - lexik_jwt_authentication.jwt_token_authenticator
+
+        main:
+            pattern: ^/
+            anonymous: ~
+            provider: my_provider
+            form_login:
+                check_path: tocketea_login
+                login_path: tocketea_login
+                default_target_path: tocketea_perfil
+                always_use_default_target_path: true
+            logout:
+                path:   /salir
+                target: /
+
+
+
+    access_control:
+        - { path: ^/(login | $), roles: IS_AUTHENTICATHED_ANONYMOUSLY }
+        - { path: ^/comprador, roles: ROLE_COMPRADOR }
+        - { path: ^/gestor, roles: [ROLE_GESTOR] }
+        - { path: ^/admin, roles: [ROLE_ADMINISTRADOR] }
+        - { path: ^/api/v1/auth, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/v1, roles: IS_AUTHENTICATED_FULLY}

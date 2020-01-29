@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}{% endblock %}</title>
+  {% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/fonts.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/global.css') }}">
+  {% endblock %}
+</head>
+<body>
+
+  {% block head %}
+
+    <header class="cabecera">
+      <div class="cabecera_izq unselectable">
+        {# Si estamos en el index, mostramos la hamburguesa #}
+        {% if app.request.get('_route') == 'tocketea_eventos' %}  {# Comprobar si al enviar parámetro se mantiene #}
+          <button type="button" id="btn_filtros"><span></span><span></span><span></span></button>
+        {% endif %}
+        <h1><a href="/">Tocketea</a></h1>
+      </div>
+
+      {% if app.user %}
+          {% if app.user.roles | json_encode == '["ROLE_COMPRADOR"]' %}
+            {% include 'private/headers/navegacion_comprador.html.twig' %}
+          {% elseif app.user.roles | json_encode == '["ROLE_GESTOR"]' %}
+            {% include 'private/headers/navegacion_gestor.html.twig' %}
+          {% elseif app.user.roles | json_encode == '["ROLE_ADMINISTRADOR"]' %}
+            {% include 'private/headers/navegacion_administrador.html.twig' %}
+          {% endif %}
+      {% else %}
+          {% include 'public/headers/navegacion_anonimos.html.twig' %}
+      {% endif %}
+
+    </header>
+  {% endblock %}
+
+  {% block body %}{% endblock %}
+
+  {% block javascripts %}
+    <script type="text/javascript" src="{{ asset('js/global.js') }}"></script>
+  {% endblock %}
+
+</body>
+</html>

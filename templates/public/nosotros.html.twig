@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nosotros{% endblock %}
+
+{% block body %}
+  <main class="main_acerca_de">
+    <div class="bloque_contenedor clearfix">
+      <section class="contenido_acerca_de">
+
+        <h1>Quienes somos</h1>
+
+        <article class="info_contenido_acerca_de">
+          <div class="img_info_contenido_acerca_de">
+            <img src="{{ asset('img/web/7.jpg') }}" alt="">
+          </div>
+          <div class="decoracion_info_contenido_acerca_de">
+            <div class="texto_info_contenido_acerca_de">
+              <h3>Plataforma autogestionable</h3>
+              <p>Hemos desarrollado una soluci&oacuten tecnol&oacute;gica que simplifica la forma en que se organizan y gestionan los eventos online y se venden entradas.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="info_contenido_acerca_de">
+          <div class="img_info_contenido_acerca_de">
+            <img src="{{ asset('img/web/14.jpg') }}" alt="">
+          </div>
+          <div class="decoracion_info_contenido_acerca_de">
+            <div class="texto_info_contenido_acerca_de">
+              <h3>Escaparate de eventos</h3>
+              <p>Adem&aacute;s, hemos construido una web de descubrimiento en la que siempre se encuentran eventos relevantes, con un proceso de compra &aacute;gil y 100% seguro.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="info_contenido_acerca_de">
+          <div class="img_info_contenido_acerca_de">
+            <img src="{{ asset('img/web/17.jpg') }}" alt="">
+          </div>
+          <div class="decoracion_info_contenido_acerca_de">
+            <div class="texto_info_contenido_acerca_de">
+              <h3>Somos nosotros</h3>
+              <p>Tocketea tambi&eacute;n somos las más de 60 personas que trabajamos por todo el mundo para hacer que todo funcione.</p>
+            </div>
+          </div>
+        </article>
+
+      </section>
+    </div>
+  </main>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% block head %}
+  <div class="cabecera_der">
+    <nav>
+      <ul>
+        <li>
+          <a href="/">Home</a>
+          <a href="/"><i class="fa fa-home"></i></a>
+        </li>
+        <li>
+          <a href="/nosotros">Acerca de</a>
+          <a href="/nosotros"><i class="fa fa-diamond"></i></a>
+        </li>
+
+        <li>
+          <div class="dropdown"><span><i class="fa fa-user-o"></i><span>Nombre de usuario</span></span>
+            <div class="dropdown_content">
+              <a href="{{ path('tocketea_perfil') }}">Mi perfil</a>
+              <a href="#">Mis mensajes</a>
+              <a href="{{ path('tocketea_entradas') }}">Mis entradas</a>
+              <a href="/salir">Salir</a>
+            </div>
+          </div>
+        </li>
+
+      </ul>
+    </nav>
+  </div>
+{% endblock %}

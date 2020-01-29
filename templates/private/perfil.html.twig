@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Perfil{% endblock %}
+
+{% block body %}
+  <main class="main_perfil">
+    <div class="bloque_contenedor clearfix">
+
+      <section class="section_perfil_1">
+        <div class="img_perfil">
+          {% if app.user.getImagen is not null %}
+            <img src="{{ asset('img/perfil/'~app.user.getImagen) }}" alt="">
+          {% else %}
+            <img src="{{ asset('img/perfil/default.png') }}" alt="">
+          {% endif %}
+        </div>
+        <div class="info_section_perfil_1">
+          <span>{{ app.user.username }}</span>
+          <span>{{ app.user.email }}</span>
+        </div>
+        <span>Idioma: {{ app.user.idioma }}</span>
+      </section>
+
+      <section class="section_perfil_2">
+        <h1>Actualizar datos de usuario</h1>
+
+          {{ form_start(form) }}
+
+          {{ form_row(form.imagen) }}
+          {{ form_row(form.password) }}
+
+          {{ form_end(form) }}
+
+        </section>
+
+    </div>
+  </main>
+{% endblock %}

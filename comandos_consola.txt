@@ -1,0 +1,78 @@
+------------------------------------------------------------------
+GENERAL
+------------------------------------------------------------------
+# Ejecutar proyecto en local
+php -S 127.0.0.1:8000 -t public
+
+# Para ejecutar un comando Symfony lo haremos a traves de la instrucción
+php bin/console comandoAEjecutar
+
+# Para ver todos los comandos usamos
+php bin/console
+
+
+------------------------------------------------------------------
+TWIG
+------------------------------------------------------------------
+
+#A nivel de fichero:
+php bin/console lint:twig templates/article/recent_list.html.twig
+
+#A nivel de directorio:
+php bin/console lint:twig templates/
+
+
+------------------------------------------------------------------
+ATAJOS
+------------------------------------------------------------------
+
+# Crear un controlador
+php bin/console make:controller LuckyController
+
+# Visualizar las rutas existentes en nuestro proyecto
+php bin/console debug:router
+
+# Para ver los servicios que tenemos disponibles en el contenedor, podemos usar el siguiente comando
+php bin/console debug:autowiring
+
+# Para listar todos los servicios utilizamos el comando
+php bin/console debug:container
+
+# Si queremos información sobre un servicio concreto:
+php bin/console debug:container 'Twig\Environment‘
+
+# Si queremos mostrar los parámetros que recibe para crearse:
+php bin/console debug:container 'Twig\Environment‘ --show-arguments
+
+# AUTOGENERAR
+php bin/console list make
+
+
+------------------------------------------------------------------
+BASE DE DATOS
+------------------------------------------------------------------
+
+# Crear BBDD, valores en '.env'
+php bin/console doctrine:database:create
+
+# Crear entidades
+php bin/console make:entity nameEntitie
+
+# Crear / Actualizar BBDD a partir de las entidades
+php bin/console doctrine:migrations:diff            (Genera SQL necesarias)
+php bin/console doctrine:migrations:migrate         (Ejecuta SQL)
+
+# Actualizar BBDD
+php bin/console doctrine:schema:update --force
+
+
+
+/*-- ************* --*/
+/*--     NOTAS     --*/
+/*-- ************* --*/
+------------------------------------------------------------------------------------------------------------------------
+Cuando estamos logeados, podemos acceder al objeto de la clase Usuario que se ha guardado con nuestros datos de usuario.
+------------------------------------------------------------------------------------------------------------------------
+
+Desde twig: {{ app.user.id }}
+Desde Php:  $this->getUser()->getId()

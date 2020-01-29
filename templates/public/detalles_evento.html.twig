@@ -1,0 +1,97 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Detalles evento{% endblock %}
+
+{% block body %}
+  <main class="main_detalles_evento">
+    <section class="detalles_evento_izq">
+      <div class="img_detalles_evento">
+        {% if event['imagen'] is not null %}
+          <img src="{{ asset('img/evento/'~event['imagen']) }}" alt="">
+        {% else %}
+          <img src="{{ asset('img/evento/default.jpg') }}" alt="">
+        {% endif %}
+
+        <img src="{{ asset('img/evento/'~event['imagen']) }}" alt="">
+        {% if(event['enlace_externo'] is not empty) %}
+        <div class="enlace_ofocial_detalles_evento2">
+          <a href="{{ event['enlace_externo'] }}" title="Web oficial">
+            <i class=" fa fa-external-link"></i>
+          </a>
+        </div>
+        {% endif %}
+      </div>
+      <!-- Información relativa al usuario gestor que ha creado el evento en esta sección -->
+      <div class="entradas_detalles_evento">
+        <a href="{{ app.request.headers.get('referer') }}"><i class="fa fa-angle-left"></i></a>
+        <span>{{ event['entradas_restantes'] }}</span><span>/</span><span>{{ event['total_entradas'] }}</span><sub>Entradas restantes</sub>
+      </div>
+
+      <div class="fecha_inicio_fin_detalles_evento">
+        <span>&#191;Cuándo puedes comprar tus entradas&#63;</span>
+        <span>Desde el {{ event['venta_fecha_inicio'] | date('d-m-Y')  }} <br>Hasta el {{ event['venta_fecha_fin'] | date('d-m-Y')  }}</span>
+      </div>
+
+      <div class="comprar_entradas_desde_detalles_evento">
+
+        <a href="/entradas/comprar/{{ event['id'] }}">Comprar entradas</a>
+      </div>
+
+      <div class="info_gestor_detalles_evento">
+        <div class="ir_a_eventos_gestor_detalles_evento">
+          <a href="/{{ event['fk_usuario']['id'] }}">
+            {% if event['fk_usuario']['imagen'] is not null %}
+              <img src="{{ asset('img/perfil/'~event['fk_usuario']['imagen']) }}" alt="" title="{{ event['fk_usuario']['username'] }}">
+            {% else %}
+              <img src="{{ asset('img/perfil/default.png') }}" alt="" title="{{ event['fk_usuario']['username'] }}">
+            {% endif %}
+          </a>
+        </div>
+
+        <a href="#">
+          <i class="fa fa-comment-o" title="Contactar con {{ event['fk_usuario']['username'] }}"></i>
+        </a>
+      </div>
+
+      {% if(event['enlace_externo'] is not empty) %}
+      <div class="enlace_ofocial_detalles_evento">
+        <a href="{{ event['enlace_externo'] }}" title="Web oficial">
+          <i class=" fa fa-external-link"></i>
+        </a>
+      </div>
+      {% endif %}
+    </section>
+
+
+
+    <section class="detalles_evento_der">
+      <!-- Información relativa al evento en esta sección -->
+      <article class="info_detalles_evento">
+        <div class="contenido_info_detalles_evento">
+
+          <div class="titulo_detalles_evento">
+            <h1 title="{{ event['titulo'] }}">{{ event['titulo'] }}</h1>
+          </div>
+
+          <div class="localizacion_detalles_evento">
+            <span title="{{ event['direccion'] }}">{{ event['direccion'] }}</span>
+          </div>
+
+          <div class="descripcion_detalle_evento">
+            <p>{{ event['descripcion'] }}</p>
+          </div>
+
+          <div class="fecha_celebracion_detalles_evento">
+            <span>{{ event['fecha_celebracion'] | date('d-m-Y')  }} - {{ event['hora_celebracion'] | date('H:i') }}h</span>
+          </div>
+
+          <div class="precio_detalles_evento">
+            <span>{{ event['precio_entradas'] }}€</span>
+          </div>
+
+        </div>
+      </article>
+    </section>
+
+  </main>
+{% endblock %}

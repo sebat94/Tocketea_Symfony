@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Acceder{% endblock %}
+
+{% block body %}
+  <section class="login_registro">
+
+    <div class="img_login_registro">
+      <img src="{{ asset('img/web/1.jpg') }}" alt="">
+    </div>
+
+    <div class="contenedor_login_registro">
+      <div class="bloque_contenedor">
+
+        <article class="info_login_registro">
+
+
+          <section class="ir_registro" id="info_registro"></section>
+
+          <section class="ir_login" id="info_login">
+            <h2>&#191;Tienes una cuenta&#63;</h2>
+            <p>A que esperas para entrar y seguir disfrutando de tus eventos favoritos en Tocketea.</p>
+            <div class="btn_ir_login" id="btn_ir_login"><a href="{{ path('tocketea_login') }}">Login</a></div>
+          </section>
+
+
+          <section class="form_login_registro" id="carta_login_registro">
+
+            <!-- FORMULARIO REGISTRO -->
+            <article class="contenido_registro mover_carta_a_registro" id="form_registro">
+              <h1>Registro</h1>
+
+
+              {{ form( form , {'attr': {'novalidate': 'novalidate'}}) }}
+
+                {{ form_widget(form) }}
+                {{ form_errors(form) }}
+
+              {{ form_end(form) }}
+
+
+            </article>
+            <!-- FIN FORMULARIO REGISTRO -->
+
+          </section><!-- form_login_registro -->
+        </article><!-- info_login_registro -->
+
+      </div><!-- bloque_contenedor -->
+    </div><!-- contenedor_login_registro -->
+  </section><!-- login_registro -->
+
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  <script type="text/javascript" src="{{ asset('js/login_registro.js') }}"></script>
+{% endblock %}

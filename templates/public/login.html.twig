@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Acceder{% endblock %}
+
+{% block body %}
+  <section class="login_registro">
+
+    <div class="img_login_registro">
+      <img src="{{ asset('img/web/1.jpg') }}" alt="">
+    </div>
+
+    <div class="contenedor_login_registro">
+      <div class="bloque_contenedor">
+
+        <article class="info_login_registro">
+
+
+          <section class="ir_registro" id="info_registro">
+            <h2>&#191;No tienes una cuenta&#63;</h2>
+            <p>Date del alta ahora y disfruta de todas las ventajas que te ofrecemos en Tocketea.</p>
+            <div class="btn_ir_registro" id="btn_ir_registro"><a href="{{ path('tocketea_registro') }}">Reg&iacute;strate</a></div>
+          </section>
+
+          <section class="ir_login" id="info_login"></section>
+
+
+          <section class="form_login_registro mover_carta_a_login" id="carta_login_registro">
+
+            <!-- FORMULARIO LOGIN -->
+            <article class="contenido_login" id="form_login">
+              <h1>Login</h1>
+              {% if error %}
+                <div class="text-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+              {% endif %}
+              <form action="{{ path('tocketea_login') }}" method="post">
+
+                <div class="login_email">
+                  <input type="text" placeholder="Email" name="_username" id="username" tabindex="1" value="{{ last_username }}" required>
+                  <i class="fa fa-envelope"></i>
+                </div>
+                <div class="login_password">
+                  <input type="password" placeholder="Contrase&ntilde;a" name="_password" id="password" tabindex="2" required>
+                  <i class="fa fa-lock"></i>
+                </div>
+
+                <div class="login_enviar">
+                  <a href="#">Recuperar contrase&ntilde;a</a>
+                  <input type="submit" tabindex="3" value="LOGIN">
+                </div>
+
+                <div class="ir_registro2" id="ir_registro2"><span>Reg&iacute;strate</span></div>
+
+              </form>
+            </article>
+            <!-- FIN FORMULARIO LOGIN -->
+
+          </section><!-- form_login_registro -->
+        </article><!-- info_login_registro -->
+
+      </div><!-- bloque_contenedor -->
+    </div><!-- contenedor_login_registro -->
+  </section><!-- login_registro -->
+
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+{% endblock %}

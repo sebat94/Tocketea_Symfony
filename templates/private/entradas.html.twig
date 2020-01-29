@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mis eventos{% endblock %}
+
+{% block body %}
+  <main class="main_mis_entradas">
+    <div class="bloque_contenedor clearfix">
+
+      <section class="menu_tabla">
+        <div class="filtrar_menu_tabla">
+
+          <div class="num_eventos_tabla">
+            <span>Mis entradas</span>
+          </div>
+
+        </div>
+      </section>
+
+      {% if tickets is not empty %}
+        <section class="tabla">
+          <div class="tabla_responsive">
+
+            <div class="info_columnas_tabla">
+              <div class="columna_tabla_entradas">
+                <span>T&iacute;tulo</span>
+              </div>
+              <div class="columna_tabla_entradas">
+                <span>Fecha</span>
+              </div>
+              <div class="columna_tabla_entradas">
+                <span>Hora</span>
+              </div>
+              <div class="columna_tabla_entradas">
+                <span>Entradas</span>
+              </div>
+              <div class="columna_tabla_entradas">
+                <span>Importe</span>
+              </div>
+              <div class="columna_tabla_entradas">
+                <span>Ver</span>
+              </div>
+            </div>
+
+            {% for ticket in tickets %}
+              <article class="fila_tabla">
+                <div class="columna_tabla_entradas">
+                  {% if ticket.id_evento.imagen is not null %}
+                    <img src="{{ asset('img/evento/'~ticket.id_evento.imagen) }}" alt="">
+                  {% else %}
+                    <img src="{{ asset('img/evento/default.jpg') }}" alt="" title="default">
+                  {% endif %}
+                  <div>{{ ticket.id_evento.titulo }}</div>
+                </div>
+                <div class="columna_tabla_entradas">
+                  <span>{{ ticket.id_evento.fecha_celebracion | date("m/d/Y") }}</span>
+                </div>
+                <div class="columna_tabla_entradas">
+                  <span>{{ ticket.id_evento.hora_celebracion | date('H:i:s') }}</span>
+                </div>
+                <div class="columna_tabla_entradas">
+                  <span>{{ ticket.num_entradas }}</span>
+                </div>
+                <div class="columna_tabla_entradas">
+                  <span>{{ ticket.id_evento.precio_entradas * ticket.num_entradas }}€</span>
+                </div>
+                <div class="columna_tabla_entradas">
+                  <a href="/eventos/{{ ticket.id }}"><i class="fa fa-eye"></i></a>
+                </div>
+              </article>
+            {% endfor %}
+
+
+          </div>
+        </section>
+      {% endif %}
+
+    </div>
+  </main>
+{% endblock %}

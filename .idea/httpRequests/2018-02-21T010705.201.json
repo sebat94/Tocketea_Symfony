@@ -1,0 +1,12 @@
+{
+  "data": {
+    "id": 13,
+    "email": "api_rest_4@gmail.com",
+    "password": "$2y$12$rw.TZtrox53qnOQ0a1qPXuzZy0oG4lW9D\/wqTFCItztkq9TaybogO",
+    "username": "api",
+    "fk_provincia": {},
+    "imagen": null,
+    "rol": "ROLE_ADMINISTRADOR",
+    "idioma": "es_ES"
+  }
+}

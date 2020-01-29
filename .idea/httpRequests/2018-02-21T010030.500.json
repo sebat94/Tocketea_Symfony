@@ -1,0 +1,100 @@
+{
+  "error": {
+    "code": 500,
+    "message": "Internal Server Error",
+    "exception": [
+      {
+        "message": "Notice: Undefined index: fk_provincia",
+        "class": "ErrorException",
+        "trace": [
+          {
+            "namespace": "",
+            "short_class": "",
+            "class": "",
+            "type": "",
+            "function": "",
+            "file": "C:\\xampp\\htdocs\\tocketea_symfony\\src\\Controller\\REST\\UserRestController.php",
+            "line": 33,
+            "args": []
+          },
+          {
+            "namespace": "App\\Controller\\REST",
+            "short_class": "UserRestController",
+            "class": "App\\Controller\\REST\\UserRestController",
+            "type": "->",
+            "function": "register",
+            "file": "C:\\xampp\\htdocs\\tocketea_symfony\\vendor\\symfony\\http-kernel\\HttpKernel.php",
+            "line": 149,
+            "args": [
+              [
+                "object",
+                "Symfony\\Component\\HttpFoundation\\Request"
+              ],
+              [
+                "object",
+                "App\\BLL\\UsuarioBLL"
+              ]
+            ]
+          },
+          {
+            "namespace": "Symfony\\Component\\HttpKernel",
+            "short_class": "HttpKernel",
+            "class": "Symfony\\Component\\HttpKernel\\HttpKernel",
+            "type": "->",
+            "function": "handleRaw",
+            "file": "C:\\xampp\\htdocs\\tocketea_symfony\\vendor\\symfony\\http-kernel\\HttpKernel.php",
+            "line": 66,
+            "args": [
+              [
+                "object",
+                "Symfony\\Component\\HttpFoundation\\Request"
+              ],
+              [
+                "integer",
+                1
+              ]
+            ]
+          },
+          {
+            "namespace": "Symfony\\Component\\HttpKernel",
+            "short_class": "HttpKernel",
+            "class": "Symfony\\Component\\HttpKernel\\HttpKernel",
+            "type": "->",
+            "function": "handle",
+            "file": "C:\\xampp\\htdocs\\tocketea_symfony\\vendor\\symfony\\http-kernel\\Kernel.php",
+            "line": 190,
+            "args": [
+              [
+                "object",
+                "Symfony\\Component\\HttpFoundation\\Request"
+              ],
+              [
+                "integer",
+                1
+              ],
+              [
+                "boolean",
+                true
+              ]
+            ]
+          },
+          {
+            "namespace": "Symfony\\Component\\HttpKernel",
+            "short_class": "Kernel",
+            "class": "Symfony\\Component\\HttpKernel\\Kernel",
+            "type": "->",
+            "function": "handle",
+            "file": "C:\\xampp\\htdocs\\tocketea_symfony\\public\\index.php",
+            "line": 37,
+            "args": [
+              [
+                "object",
+                "Symfony\\Component\\HttpFoundation\\Request"
+              ]
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
